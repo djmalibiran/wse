@@ -57,7 +57,7 @@ $questions = array_slice($questions, 0, 10);
                                     <label class="form-check-label" for="q<?php echo $question['id'] ?>c"><?php echo $question['options']['c'] ?></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="D" id="q<?php echo $question['id'] ?>c">
+                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="D" id="q<?php echo $question['id'] ?>d">
                                     <label class="form-check-label" for="q<?php echo $question['id'] ?>d"><?php echo $question['options']['d'] ?></label>
                                 </div>
                             </div>
