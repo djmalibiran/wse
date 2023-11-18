@@ -9,12 +9,14 @@ include('config.php');
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") :
-    $name = $_POST["register-name"];
+    $first_name = $_POST["register-first-name"];
+    $middle_name = $_POST["register-middle-name"];
+    $last_name = $_POST["register-last-name"];
     $email = $_POST["register-email"];
     $username = $_POST["register-username"];
     $password = $_POST["register-password"];
 
-    $sql = "INSERT INTO wse_users (name, email, username, password) VALUES ('$name', '$email', '$username', '$password')";
+    $sql = "INSERT INTO wse_users (first_name, middle_name, last_name, email, username, password) VALUES ('$first_name', '$middle_name', '$last_name', '$email', '$username', '$password')";
 
     if ($conn->query($sql) === TRUE) : ?>
         <section class="container py-5">

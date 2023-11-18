@@ -36,8 +36,16 @@ require 'components/header.php';
                     <h2>Register</h2>
                     <form action="http://localhost/wse/register.php" method="post">
                         <div class="mb-3">
-                            <label for="register-name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="register-name" name="register-name" autocomplete="off" require>
+                            <label for="register-first-name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="register-first-name" name="register-first-name" autocomplete="off" require>
+                        </div>
+                        <div class="mb-3">
+                            <label for="register-middle-name" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control" id="register-middle-name" name="register-middle-name" autocomplete="off" require>
+                        </div>
+                        <div class="mb-3">
+                            <label for="register-last-name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="register-last-name" name="register-last-name" autocomplete="off" require>
                         </div>
                         <div class="mb-3">
                             <label for="register-email" class="form-label">Email</label>
