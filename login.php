@@ -13,10 +13,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if the user exists
         $sql = "SELECT * FROM wse_users WHERE username='$login_username' AND password='$login_password'";
         $result = $conn->query($sql);
+        $user = $result->fetch_assoc();
+
+        if(session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['last_name'] = $user['last_name'];
 
         if ($result->num_rows > 0) {
             echo "Login successful!";
-            // You can add session management or redirect to a different page here
+            header('Location: test.php');
         } else {
             echo "Invalid username or password.";
         }
