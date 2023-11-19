@@ -1,5 +1,4 @@
 <?php
-require 'components/header.php';
 include('config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,8 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['last_name'] = $user['last_name'];
 
         if ($result->num_rows > 0) {
-            echo "Login successful!";
-            header('Location: test.php');
+            header('Location: index.php');
         } else {
             echo "Invalid username or password.";
         }
