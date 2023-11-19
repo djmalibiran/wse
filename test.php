@@ -5,6 +5,15 @@ include('config.php');
 // Get all questions
 $results = $conn->query("SELECT * FROM wse_questions");
 
+// Session
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+} ?>
+
+<?php
+
+
+
 // Populate array with questions 
 $questions = [];
 while($row = $results->fetch_assoc()) {
@@ -36,28 +45,29 @@ $questions = array_slice($questions, 0, 10);
     <div class="row">
         <div class="col">
             <div class="py-5 my-5 text-center">
-                <h1>Take the Test</h1>
+                <h1>Welcome <?php echo($_SESSION['first_name']) . ' ' . $_SESSION['last_name']; ?>!</h1>
+                <h2>Your test has started. Start answering now.</h2>
             </div>
-            <form method="post">
+            <form action="submit.php" method="post">
                 <?php foreach ($questions as $question) : ?>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $question['text'] ?></h5>
                             <div class="options">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="A" id="q<?php echo $question['id'] ?>a">
+                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="a" id="q<?php echo $question['id'] ?>a">
                                     <label class="form-check-label" for="q<?php echo $question['id'] ?>a"><?php echo $question['options']['a'] ?></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="B" id="q<?php echo $question['id'] ?>b">
+                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="b" id="q<?php echo $question['id'] ?>b">
                                     <label class="form-check-label" for="q<?php echo $question['id'] ?>b"><?php echo $question['options']['b'] ?></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="C" id="q<?php echo $question['id'] ?>c">
+                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="c" id="q<?php echo $question['id'] ?>c">
                                     <label class="form-check-label" for="q<?php echo $question['id'] ?>c"><?php echo $question['options']['c'] ?></label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="D" id="q<?php echo $question['id'] ?>d">
+                                    <input class="form-check-input" type="radio" name="q<?php echo $question['id'] ?>" value="d" id="q<?php echo $question['id'] ?>d">
                                     <label class="form-check-label" for="q<?php echo $question['id'] ?>d"><?php echo $question['options']['d'] ?></label>
                                 </div>
                             </div>
