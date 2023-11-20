@@ -3,23 +3,22 @@ session_start();
 require 'components/header.php';
 ?>
 
-<section class="container">
-    <div class="row">
-        <div class="col">
-        </div>
-    </div>
-</section>
-
 <section class="container py-5">
     <div class="row d-flex align-items-center">
         <div class="col">
-            <h1><?php echo session_status(); ?></h1>
             <h1>Hello, world!</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae quaerat fugit vero perspiciatis aliquid libero, distinctio, inventore laboriosam sit, exercitationem delectus in quasi voluptatum et voluptates reiciendis numquam temporibus? Atque?</p>
         </div>
-        <?php if(isset($_SESSION['user_id'])) : ?>
+        <?php if (isset($_SESSION['user_id'])) : ?>
             <div class="col">
-                <h1>Welcome <?php echo($_SESSION['first_name']) . ' ' . $_SESSION['last_name']; ?>!</h1>
+                <h1>Welcome <?php echo ($_SESSION['first_name']) . ' ' . $_SESSION['last_name']; ?>!</h1>
+                <?php if ($_SESSION['test_taken']) : ?>
+                    <h2>Having already taken the exam, would you like to view the results?</h2>
+                    <a href="<?php echo "http://" . $_SERVER['HTTP_HOST']?>/results.php" class="btn btn-primary btn-lg">View Results</a>
+                <?php else : ?>
+                   <h2>Since you haven't taken the exam yet, would you like to do it now?</h2>
+                   <a href="<?php echo "http://" . $_SERVER['HTTP_HOST']?>/examinee.php" class="btn btn-primary btn-lg">Start Exam</a>
+                <?php endif; ?>
             </div>
         <?php else : ?>
             <div class="col">
@@ -82,13 +81,13 @@ require 'components/header.php';
     const isRegistered = new URLSearchParams(window.location.search).get("registered");
     const loginDiv = document.querySelector("div#login");
     const registerDiv = document.querySelector("div#register");
-    
+
     const toggleDnone = () => {
         registerDiv.classList.toggle("d-none")
         loginDiv.classList.toggle("d-none")
     }
-    
-    (isRegistered === "true") ? toggleDnone() : null;
+
+    (isRegistered === "true") ? toggleDnone(): null;
 </script>
 
 <?php
