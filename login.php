@@ -21,9 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['first_name'] = $user['first_name'];
         $_SESSION['last_name'] = $user['last_name'];
+        $_SESSION['test_taken'] = $user['test_taken'];
 
         if ($result->num_rows > 0) {
-            header('Location: index.php');
+            header('Location: examinee.php');
         } else {
             echo "Invalid username or password.";
         }
