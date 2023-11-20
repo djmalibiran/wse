@@ -1,4 +1,4 @@
-<footer class="container">
+<footer class="container py-5">
     <div class="row">
         <div class="col">
             <div class="card">
