@@ -33,23 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (session_status() == PHP_SESSION_NONE) {
       session_start();
     }
-    $user_id = $_SESSION['user_id'];
     $sql = "INSERT INTO wse_results 
               (question_id, user_id, answer, is_correct)  
               VALUES 
-              ($q_id, $user_id, '$answer', $is_correct)";
+              ($q_id, {$_SESSION['user_id']}, '$answer', $is_correct)";
 
     $conn->query($sql);
   }
 
   // Save score to database and set score in session
-  $sql = "UPDATE wse_users SET score = $score WHERE id = $userId;";
+  $sql = "UPDATE wse_users SET score = $score WHERE id = {$_SESSION['user_id']};";
   $conn->query($sql);
   $_SESSION['score'] = $score;
 
 
   // Save to database and session that the user has taken the test
-  $sql = "UPDATE wse_users SET test_taken = 1 WHERE id = $userId";
+  $sql = "UPDATE wse_users SET test_taken = 1 WHERE id = {$_SESSION['user_id']}";
   $conn->query($sql);
   $_SESSION['test_taken'] = 1;
 

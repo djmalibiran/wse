@@ -10,36 +10,44 @@ require 'components/header.php';
                 <h1>Welcome to the Qualifying Examination</h1>
             </div>
         </div>
+        
         <div class="row">
-            <div class="col">
-                <h2>Hello <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>!</h2>
-                <p>Welcome to the Qualifying Examination for the College of Information and Computing Science.</p>
-                <h2>Directions and Reminders</h2>
-                <p>Please follow these directions and reminders as you take the exam:</p>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item">Do not refresh the page during the exam.</li>
-                    <li class="list-group-item">You have 60 minutes to complete the multiple choice exam.</li>
-                    <li class="list-group-item">Keep an eye on the countdown timer.</li>
-                    <li class="list-group-item">Answer all the questions to the best of your ability.</li>
-                    <li class="list-group-item">You are not allowed to search on the internet.</li>
-                    <li class="list-group-item">After completing the exam, you can review your answers.</li>
-                    <li class="list-group-item">Do not close the browser.</li>
-                    <li class="list-group-item">Mind your own examinations.</li>
-                    <li class="list-group-item">You need to use MS Word, Excel and Powerpoint to answers most of the questions.</li>
-                    <li class="list-group-item">Built in calculator or using a calculator is not allowed, use Excel to compute</li>
-                    <li class="list-group-item"> Anyone who is caught cheating, will automatically fail the examination.</li>
-                    <li class="list-group-item"> Avoid talking with your seatmates. Ask the examination proctor if you have queries</li>
-                    <li class="list-group-item"> Once you're ready, submit your exam for evaluation.</li>
-                </ul>
-                <h2>Ready to start?</h2>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="directions-and-reminders" onclick="handleCheckbox()">
-                    <label class="form-check-label" for="directions-and-reminders">
-                        I have read the directions and reminders and I am ready to start the test.
-                    </label>
+            <?php if ($_SESSION['test_taken']) : ?>
+                <div class="col text-center">
+                    <h2>Having already taken the exam, would you like to view the results?</h2>
+                    <a href="<?php echo "http://" . $_SERVER['HTTP_HOST']?>/results.php" class="btn btn-primary btn-lg">View Results</a>
                 </div>
-                <button id="proceed" type="button" class="btn btn-primary" onclick="proceed()" disabled>Start Exam</button>
-            </div>
+            <?php else : ?>
+                <div class="col">
+                    <h2>Hello <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name'] ?>!</h2>
+                    <p>Welcome to the Qualifying Examination for the College of Information and Computing Science.</p>
+                    <h2>Directions and Reminders</h2>
+                    <p>Please follow these directions and reminders as you take the exam:</p>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">Do not refresh the page during the exam.</li>
+                        <li class="list-group-item">You have 60 minutes to complete the multiple choice exam.</li>
+                        <li class="list-group-item">Keep an eye on the countdown timer.</li>
+                        <li class="list-group-item">Answer all the questions to the best of your ability.</li>
+                        <li class="list-group-item">You are not allowed to search on the internet.</li>
+                        <li class="list-group-item">After completing the exam, you can review your answers.</li>
+                        <li class="list-group-item">Do not close the browser.</li>
+                        <li class="list-group-item">Mind your own examinations.</li>
+                        <li class="list-group-item">You need to use MS Word, Excel and Powerpoint to answers most of the questions.</li>
+                        <li class="list-group-item">Built in calculator or using a calculator is not allowed, use Excel to compute</li>
+                        <li class="list-group-item"> Anyone who is caught cheating, will automatically fail the examination.</li>
+                        <li class="list-group-item"> Avoid talking with your seatmates. Ask the examination proctor if you have queries</li>
+                        <li class="list-group-item"> Once you're ready, submit your exam for evaluation.</li>
+                    </ul>
+                    <h2>Ready to start?</h2>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" value="" id="directions-and-reminders" onclick="handleCheckbox()">
+                        <label class="form-check-label" for="directions-and-reminders">
+                            I have read the directions and reminders and I am ready to start the test.
+                        </label>
+                    </div>
+                    <button id="proceed" type="button" class="btn btn-primary" onclick="proceed()" disabled>Start Exam</button>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
     <script>
@@ -64,3 +72,7 @@ require 'components/header.php';
     </section>
 
 <?php endif; ?>
+
+<?php
+require 'components/footer.php';
+?>
